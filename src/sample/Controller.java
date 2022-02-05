@@ -47,8 +47,8 @@ public class Controller implements Initializable {
     private AnchorPane scene;
     @FXML
     private Rectangle outerSquare;
-    @FXML
-    private final Bounds bound = outerSquare.getBoundsInLocal();
+    //@FXML
+    //private final Bounds bound = outerSquare.getBoundsInLocal();
 
 
     @FXML
@@ -73,12 +73,12 @@ public class Controller implements Initializable {
             double X = squareShape.getLayoutX();
             System.out.println(X);
             System.out.println(Y);
-            if(checkBoundariesX(X)){
-                squareShape.setLayoutX(squareShape.getLayoutX()-5);
-            }
-            if(checkBoundariesY(Y)){
-                squareShape.setLayoutY(squareShape.getLayoutY()-5);
-            }
+            //if(checkBoundariesX(X)){
+            //    squareShape.setLayoutX(squareShape.getLayoutX()-5);
+            //}
+            //if(checkBoundariesY(Y)){
+            //    squareShape.setLayoutY(squareShape.getLayoutY()-5);
+            //}
             if (wPressed.get()) {
                 squareShape.setLayoutY(squareShape.getLayoutY() - PS.getSpeed());
                 c1.setLayoutY(c1.getLayoutY() - PS.getSpeed());
@@ -191,6 +191,7 @@ public class Controller implements Initializable {
     }
 
     private boolean checkBoundariesX(double x) {
+        Bounds bound = outerSquare.getBoundsInLocal();
         if(x >=bound.getMaxX() || x <=bound.getMinX()){
             System.out.println("OUTSIDE");
             return false;
@@ -202,6 +203,7 @@ public class Controller implements Initializable {
         return true;
     }
     private boolean checkBoundariesY(double y) {
+        Bounds bound = outerSquare.getBoundsInLocal();
         if(y >=bound.getMaxY() || y <=bound.getMinY()){
             System.out.println("OUTSIDE");
             return false;
