@@ -29,17 +29,15 @@ public class Spells implements Initializable {
 
     }
 
-
-    public void setAttack(Circle c, boolean reverse,int angle,int duration){
-
+    @FXML
+    public void circleSmash(Circle c, boolean reverse, int angle, int duration){
         RotateTransition rt = new RotateTransition(Duration.seconds(duration),c);
 
         rt.setByAngle(angle);
         rt.setAutoReverse(reverse);
         rt.setDelay(Duration.seconds(0));
-        rt.setRate(3);
-
-        rt.setCycleCount(10);
+        rt.setRate(12);
+        rt.setCycleCount(25);
         rt.play();
     }
 

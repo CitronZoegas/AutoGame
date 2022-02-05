@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.animation.AnimationTimer;
-import javafx.animation.RotateTransition;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -9,14 +8,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
-import javafx.geometry.Point2D;
-import javafx.geometry.Point3D;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,10 +23,13 @@ public class Controller implements Initializable {
     private BooleanProperty sPressed = new SimpleBooleanProperty();
     private BooleanProperty dPressed = new SimpleBooleanProperty();
     private BooleanProperty lPressed = new SimpleBooleanProperty();
-
     private BooleanBinding anyKeyPressed = wPressed.or(aPressed).or(sPressed).or(dPressed).or(lPressed);
+
+
     private double movementSpeed = 2;
     private double health = 100;
+    private double maxX = 892;
+    private double maxY = 735;
 
     Spells spells = new Spells();
 
@@ -46,70 +45,78 @@ public class Controller implements Initializable {
     private Circle c2;
     @FXML
     private AnchorPane scene;
+    @FXML
+    private Rectangle outerSquare;
+    @FXML
+    private final Bounds bound = outerSquare.getBoundsInLocal();
 
-    //@FXML
-    //private Bounds boundsInScene = squareShape.localToScene(squareShape.getBoundsInLocal());
 
     @FXML
     void reset(ActionEvent event) {
 
-        squareShape.setLayoutY(400);
-        squareShape.setLayoutX(450);
-        c1.setLayoutY(400);
-        c1.setLayoutX(450);
-        c2.setLayoutY(400);
-        c2.setLayoutX(450);
+        double centerX = (417);
+        System.out.println(centerX);
+        double centerY = (338);
+        squareShape.setLayoutY(centerY);
+        squareShape.setLayoutX(centerX);
+        c1.setLayoutY(centerY);
+        c1.setLayoutX(centerX);
+        c2.setLayoutY(centerY);
+        c2.setLayoutX(centerX);
     }
 
     AnimationTimer AT = new AnimationTimer() {
         @Override
         public void handle(long time) {
-            if(wPressed.get()){
 
+            double Y = squareShape.getLayoutY();
+            double X = squareShape.getLayoutX();
+            System.out.println(X);
+            System.out.println(Y);
+            if(checkBoundariesX(X)){
+                squareShape.setLayoutX(squareShape.getLayoutX()-5);
+            }
+            if(checkBoundariesY(Y)){
+                squareShape.setLayoutY(squareShape.getLayoutY()-5);
+            }
+            if (wPressed.get()) {
                 squareShape.setLayoutY(squareShape.getLayoutY() - PS.getSpeed());
                 c1.setLayoutY(c1.getLayoutY() - PS.getSpeed());
                 c2.setLayoutY(c2.getLayoutY() - PS.getSpeed());
             }
-            if(sPressed.get()){
-
+            if (sPressed.get()) {
                 squareShape.setLayoutY(squareShape.getLayoutY() + PS.getSpeed());
                 c1.setLayoutY(c1.getLayoutY() + PS.getSpeed());
                 c2.setLayoutY(c2.getLayoutY() + PS.getSpeed());
             }
-            if(aPressed.get()){
-
+            if (aPressed.get()) {
                 squareShape.setLayoutX(squareShape.getLayoutX() - PS.getSpeed());
                 c1.setLayoutX(c1.getLayoutX() - PS.getSpeed());
                 c2.setLayoutX(c2.getLayoutX() - PS.getSpeed());
             }
-            if(dPressed.get()){
-
+            if (dPressed.get()) {
                 squareShape.setLayoutX(squareShape.getLayoutX() + PS.getSpeed());
                 c1.setLayoutX(c1.getLayoutX() + PS.getSpeed());
                 c2.setLayoutX(c2.getLayoutX() + PS.getSpeed());
             }
-            if(lPressed.get()){
-
-                setAttack(c1,true,720,3);
-                setAttack(c2,true,180,3);
+            if (lPressed.get()) {
+                spells.circleSmash(c1, true, 720, 3);
+                spells.circleSmash(c2, true, 180, 3);
             }
-        }
-    };
+            }
+        };
 
-    @FXML
+    /*@FXML
     public void setAttack(Circle c, boolean reverse,int angle,int duration){
-
         RotateTransition rt = new RotateTransition(Duration.seconds(duration),c);
 
         rt.setByAngle(angle);
         rt.setAutoReverse(reverse);
         rt.setDelay(Duration.seconds(0));
         rt.setRate(12);
-
         rt.setCycleCount(25);
         rt.play();
-    }
-
+    }*/
 
     public void movementInitialize() {
 
@@ -133,7 +140,6 @@ public class Controller implements Initializable {
                 findCircles();
                 lPressed.set(true);
             }
-
         });
 
         /**
@@ -159,8 +165,6 @@ public class Controller implements Initializable {
             }
         });
 
-
-
     }
     public void removeCircles() {
         c1.setOpacity(0);
@@ -183,38 +187,25 @@ public class Controller implements Initializable {
                 AT.stop();
             }
         })));
+
     }
 
-    /**
-     *
-     * @bound unknown.
-     *
-     * Game over checker instead of windowchecker.
-     */
-    /*public void windowCheck() {
-        if(squareShape.getX() >= 800){
-            squareShape.setX(800);
+    private boolean checkBoundariesX(double x) {
+        if(x >=bound.getMaxX() || x <=bound.getMinX()){
+            System.out.println("OUTSIDE");
+            return false;
         }
-        if(squareShape.getX() <= 0){
-            squareShape.setX(0);
+        //if(y >=outerBounds.getMaxY() || y<=outerBounds.getMinY()){
+        //    System.out.println("OUTSIDE TOP OR BOT");
+        //    return false;
+        //}
+        return true;
+    }
+    private boolean checkBoundariesY(double y) {
+        if(y >=bound.getMaxY() || y <=bound.getMinY()){
+            System.out.println("OUTSIDE");
+            return false;
         }
-        if(squareShape.getY() >= 900){
-            squareShape.setY(900);
-        }
-        if(squareShape.getY() <= 0){
-            squareShape.setY(0);
-        }
-
-        if(squareShape.intersects(bounds)){
-            squareShape.setX(900);
-        }
-    }*/
-    private void checkBoundaries() {
-        boolean detected = false;
-
-        if(squareShape.getLayoutBounds().intersects()){
-            detected = true;
-        }
-
+        return true;
     }
 }
