@@ -13,7 +13,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -25,15 +24,22 @@ public class Controller implements Initializable {
     private BooleanProperty lPressed = new SimpleBooleanProperty();
     private BooleanBinding anyKeyPressed = wPressed.or(aPressed).or(sPressed).or(dPressed).or(lPressed);
 
-
     private double movementSpeed = 2;
     private double health = 100;
     private double maxX = 892;
     private double maxY = 735;
 
-    Spells spells = new Spells();
+    private double EnHealth = 4;
+    private double EnDamage = 2;
+    private double EnSpeed = 1;
+    private int EnHeight = 100;
+    private int EnWidth = 100;
 
-    playerSquare PS = new playerSquare(health,movementSpeed);
+    Spells spells = new Spells(this);
+    Enemies enemies = new Enemies(this,EnHealth,EnDamage,EnSpeed,EnHeight,EnWidth);
+    playerSquare PS = new playerSquare(this,health,movementSpeed);
+
+
 
     @FXML
     private Rectangle squareShape;
@@ -49,7 +55,6 @@ public class Controller implements Initializable {
     private Rectangle outerSquare;
     //@FXML
     //private final Bounds bound = outerSquare.getBoundsInLocal();
-
 
     @FXML
     void reset(ActionEvent event) {
@@ -68,17 +73,14 @@ public class Controller implements Initializable {
     AnimationTimer AT = new AnimationTimer() {
         @Override
         public void handle(long time) {
-
             double Y = squareShape.getLayoutY();
             double X = squareShape.getLayoutX();
-            System.out.println(X);
-            System.out.println(Y);
-            //if(checkBoundariesX(X)){
-            //    squareShape.setLayoutX(squareShape.getLayoutX()-5);
-            //}
-            //if(checkBoundariesY(Y)){
-            //    squareShape.setLayoutY(squareShape.getLayoutY()-5);
-            //}
+            if(checkBoundariesX(X)){
+                squareShape.setLayoutX(squareShape.getLayoutX());
+            }
+            if(checkBoundariesY(Y)){
+                squareShape.setLayoutY(squareShape.getLayoutY());
+            }
             if (wPressed.get()) {
                 squareShape.setLayoutY(squareShape.getLayoutY() - PS.getSpeed());
                 c1.setLayoutY(c1.getLayoutY() - PS.getSpeed());
@@ -100,26 +102,14 @@ public class Controller implements Initializable {
                 c2.setLayoutX(c2.getLayoutX() + PS.getSpeed());
             }
             if (lPressed.get()) {
+                System.out.println("lol");
                 spells.circleSmash(c1, true, 720, 3);
                 spells.circleSmash(c2, true, 180, 3);
             }
             }
         };
 
-    /*@FXML
-    public void setAttack(Circle c, boolean reverse,int angle,int duration){
-        RotateTransition rt = new RotateTransition(Duration.seconds(duration),c);
-
-        rt.setByAngle(angle);
-        rt.setAutoReverse(reverse);
-        rt.setDelay(Duration.seconds(0));
-        rt.setRate(12);
-        rt.setCycleCount(25);
-        rt.play();
-    }*/
-
     public void movementInitialize() {
-
         /**
          * ON KEY PRESSED
          */
@@ -136,7 +126,7 @@ public class Controller implements Initializable {
             if(e.getCode() == KeyCode.D){
                 dPressed.set(true);
             }
-            if(e.getCode() == KeyCode.L){
+            if(e.getCode() == KeyCode.L) {
                 findCircles();
                 lPressed.set(true);
             }
@@ -159,13 +149,31 @@ public class Controller implements Initializable {
             if(e.getCode() == KeyCode.D){
                 dPressed.set(false);
             }
-            if(e.getCode() == KeyCode.L){
+            if(e.getCode() == KeyCode.L) {
                 removeCircles();
                 lPressed.set(false);
             }
         });
-
     }
+
+    /**
+     * It seems like AnimationTimer can only take care of one "handle" method at a time.
+     * Meaning i cant separate the movement and spell keybind inputs.
+     */
+    /*public void spellsInitialize() {
+        scene.setOnKeyPressed(e-> {
+            if(e.getCode() == KeyCode.L){
+
+                lPressed.set(true);
+            }
+        });
+        scene.setOnKeyReleased(e-> {
+            if(e.getCode() == KeyCode.L){
+                lPressed.set(false);
+            }
+        });
+    }*/
+
     public void removeCircles() {
         c1.setOpacity(0);
         c2.setOpacity(0);
@@ -179,6 +187,7 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         removeCircles();
         movementInitialize();
+        //spellsInitialize();
 
         anyKeyPressed.addListener((((observableValue, aBoolean, t1) -> {
             if(!aBoolean){
@@ -187,7 +196,6 @@ public class Controller implements Initializable {
                 AT.stop();
             }
         })));
-
     }
 
     private boolean checkBoundariesX(double x) {

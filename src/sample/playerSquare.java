@@ -11,7 +11,7 @@ public class playerSquare extends Rectangle {
     private double health;
     private double speed;
 
-    public playerSquare(double health, double speed) {
+    public playerSquare(Controller controller,double health, double speed) {
         this.health = health;
         this.speed = speed;
     }
