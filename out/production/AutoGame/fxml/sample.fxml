@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="scene" prefHeight="733.0" prefWidth="892.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-   <Circle fx:id="c2" fill="#1a90ff00" layoutX="446.0" layoutY="367.0" radius="92.0" stroke="#2600ff" strokeType="INSIDE" strokeWidth="11.0" style="-fx-stroke-dash-array: 50;" />
-   <Circle fx:id="c1" fill="#1a90ff00" layoutX="447.0" layoutY="367.0" radius="61.0" stroke="#19fff0" strokeType="INSIDE" strokeWidth="11.0" style="-fx-stroke-dash-array: 50;" />
-   <Rectangle fx:id="outerSquare" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="735.0" layoutX="1.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="892.0" />
-   <Rectangle fx:id="squareShape" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="57.0" layoutX="417.0" layoutY="338.0" stroke="BLACK" strokeType="INSIDE" width="59.0" />
-   <Button fx:id="resetBtn" layoutX="834.0" layoutY="14.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
-   <TextField fx:id="scoreTextArea" layoutX="372.0" layoutY="14.0" />
-   <Button fx:id="start" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" onAction="#start" text="Start" />
-
+<AnchorPane fx:id="scene" prefHeight="894.0" prefWidth="1310.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <Circle fx:id="c2" fill="#1a90ff00" layoutX="655.0" layoutY="368.0" radius="75.0" stroke="#2600ff" strokeType="INSIDE" strokeWidth="11.0" style="-fx-stroke-dash-array: 50;" />
+   <Circle fx:id="c1" fill="#1a90ff00" layoutX="656.0" layoutY="368.0" radius="49.0" stroke="#19fff0" strokeType="INSIDE" strokeWidth="11.0" style="-fx-stroke-dash-array: 50;" />
+   <Rectangle fx:id="squareShape" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" layoutX="640.0" layoutY="355.0" stroke="BLACK" strokeType="INSIDE" width="31.0" />
+   <Button fx:id="resetBtn" layoutX="1115.0" layoutY="14.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
+   <Button fx:id="start" layoutX="1068.0" layoutY="14.0" mnemonicParsing="false" onAction="#start" text="Start" />
+   <Text fx:id="scoreArea" layoutX="196.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="122.0" />
+   <Text layoutX="155.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score:" wrappingWidth="114.13671875" />
+   <Text fx:id="timerArea" layoutX="569.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" wrappingWidth="84.13671875" />
 </AnchorPane>

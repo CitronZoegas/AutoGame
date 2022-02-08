@@ -5,17 +5,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Spells implements Initializable {
-    private Controller controller;
+public class Spells {
 
+    private Controller controller;
     private Timer timer;
     private TimerTask timerTask;
+
     public Spells(Controller controller) {
         this.timer = new Timer();
     }
@@ -29,12 +29,6 @@ public class Spells implements Initializable {
         rt.setRate(30);
         rt.setCycleCount(5);
         rt.play();
-
-
-
         }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-    }
 }
