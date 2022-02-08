@@ -51,7 +51,7 @@ public class Controller implements Initializable {
     //private final Bounds bound = outerSquare.getBoundsInLocal();
 
 
-    private double movementSpeed = 2;
+    private double movementSpeed = 5;
     private double health = 100;
     private double maxX = 892;
     private double maxY = 735;
@@ -108,6 +108,7 @@ public class Controller implements Initializable {
         trans.setOnFinished(e->{
             scene.getChildren().remove(rectangle);
             eList.remove(rectangle);
+
         });
         return rectangle;
     }
@@ -210,12 +211,12 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         timeline.setCycleCount(Animation.INDEFINITE);
-        touchCheck.startChecker();
         enemyRectangle();
         removeCircles();
         movementInitialize();
         scoreAreaInitialize();
         touchCheck.CollidedOrNa(squareShape,enemyRectangle());
+        touchCheck.startChecker();
         anyKeyPressed.addListener((((observableValue, aBoolean, t1) -> {
             if(!aBoolean){
                 AT.start();

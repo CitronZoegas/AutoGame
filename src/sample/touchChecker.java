@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.scene.shape.Rectangle;
 
@@ -16,12 +15,12 @@ public class touchChecker {
         this.rectangleCollided = rectangleCollided;
         this.enemyRectangle = enemyRectangle;
     }
-    public boolean CollidedOrNa(Rectangle rectangle, Rectangle rectangleCollided) {
+    public void CollidedOrNa(Rectangle rectangle, Rectangle rectangleCollided) {
+
         if(rectangle.getBoundsInParent().intersects(rectangleCollided.getBoundsInParent())){
+            System.out.println("You lost");
             collision.stop();
-            return true;
         }
-        return false;
     }
     public void startChecker() {
         collision.start();
