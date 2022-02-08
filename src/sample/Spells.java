@@ -11,13 +11,12 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Spells extends Thread implements Initializable {
+public class Spells implements Initializable {
     private Controller controller;
 
     private Timer timer;
     private TimerTask timerTask;
     public Spells(Controller controller) {
-        this.controller = controller;
         this.timer = new Timer();
     }
 
