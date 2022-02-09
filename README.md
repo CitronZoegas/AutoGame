@@ -1,6 +1,6 @@
 # AutoGame
 Dodge game:
- - Dodge the rectangle flying towards you.
+ - Dodge the rectangles flying towards you.
  - Stay close to the flying rectangles to get score.
  - You have 1 life so do NOT get hit.
  - Use spell on rectangles to get score.
