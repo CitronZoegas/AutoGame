@@ -1,0 +1,21 @@
+.button {
+  -fx-display: inline-block;
+  -fx-padding: 15px 25px;
+  -fx-font-size: 24px;
+  -fx-cursor: pointer;
+  -fx-text-align: center;
+  -fx-text-decoration: none;
+  -fx-outline: none;
+  -fx-color: #fff;
+  -fx-background-color: #4CAF50;
+  -fx-border: none;
+  -fx-border-radius: 15px;
+
+}
+.button:hover {
+    -fx-background-color: #3e8e41
+}
+#textArea{
+    -fx-font-size: 24px;
+}
+

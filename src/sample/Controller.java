@@ -16,11 +16,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import java.net.URL;
-import java.time.Instant;
-import java.util.LinkedList;
-import java.util.Random;
-import java.util.ResourceBundle;
-import java.util.Timer;
+import java.util.*;
 
 public class Controller implements Initializable {
 
@@ -60,7 +56,7 @@ public class Controller implements Initializable {
 
     playerSquare PS = new playerSquare(this,health,movementSpeed,2,2);
     Spells spells = new Spells(this);
-
+    private final long createdMillis = System.currentTimeMillis();
 
     @FXML
     void start(ActionEvent event){
@@ -84,10 +80,13 @@ public class Controller implements Initializable {
         c2.setLayoutY(centerY);
         c2.setLayoutX(centerX);
     }
+
     public void setTimer() {
-        Instant start = Instant.now();
-        timerArea.setText(String.valueOf(start));
+        long nowMillis = System.currentTimeMillis();
+        timerArea.setText(String.valueOf((int) ((nowMillis - this.createdMillis) / 1000)));
+
     }
+
     public Rectangle enemyRectangle() {
         int rectangleHeightX = r.nextInt(1310);
         //minimum of 40
@@ -106,7 +105,7 @@ public class Controller implements Initializable {
         return rectangle;
     }
 
-    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), e->{
+    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), e->{
         Rectangle rectangle = enemyRectangle();
         scene.getChildren().add(rectangle);
         eList.add(rectangle);
@@ -183,7 +182,7 @@ public class Controller implements Initializable {
                 dPressed.set(false);
             }
             if(e.getCode() == KeyCode.L) {
-                removeCircles();
+                //removeCircles();
                 lPressed.set(false);
             }
         });
@@ -198,7 +197,11 @@ public class Controller implements Initializable {
         scoreArea.setText(String.valueOf(score));
     }
 
-
+    /**
+     * Currently not using this because i havnt made a connection between
+     * the use of spell and the enemyrectangles. So at the moment the
+     * "circlesmash" visuals are basically just an indicator to get score.
+     */
     public void removeCircles() {
         c1.setOpacity(0);
         c2.setOpacity(0);
@@ -215,7 +218,7 @@ public class Controller implements Initializable {
         Controller controller = new Controller();
         timeline.setCycleCount(Animation.INDEFINITE);
         enemyRectangle();
-        removeCircles();
+        //removeCircles();
         movementInitialize();
         scoreAreaIncrementer(0);
 

@@ -30,5 +30,4 @@ public class Spells {
         rt.setCycleCount(5);
         rt.play();
         }
-
 }

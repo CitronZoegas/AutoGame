@@ -5,18 +5,22 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-
+import javafx.scene.text.Font;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 import java.util.LinkedList;
 
 public class touchChecker {
 
     private Rectangle rectangleCollided;
     private LinkedList<Rectangle> enemyRectangle;
-
     private Controller controller;
 
     @FXML
@@ -39,6 +43,7 @@ public class touchChecker {
     public void CollidedOrNa(Rectangle squareShape, Rectangle rectangleCollided) {
         if(!(squareShape == null) && squareShape.getBoundsInParent().intersects(rectangleCollided.getBoundsInParent())){
             collision.stop();
+            gameOver();
             System.out.println("ACTUALLY STOPPED");
 
         }
@@ -46,12 +51,25 @@ public class touchChecker {
 
     public void hitEnemyWithSpell(Rectangle rectangleCollided, Circle circle) {
 
-        System.out.println(score);
         if(circle.getBoundsInParent().intersects(rectangleCollided.getBoundsInParent())){
             score++;
             controller.scoreAreaIncrementer(score);
         }
 
+    }
+
+    public void gameOver() {
+        Stage stage = (Stage) squareShape.getScene().getWindow();
+
+        Label label = new Label("Final score: "+score);
+        label.setFont(new Font("Arial",40));
+        label.setTextFill(Color.RED);
+
+        Popup pop = new Popup();
+        pop.getContent().add(label);
+        if(!pop.isShowing()){
+            pop.show(stage);
+        }
     }
 
     public void startSpellHitChecker() {
@@ -78,6 +96,7 @@ public class touchChecker {
         public void handle(long timer){
             for(Rectangle rec: enemyRectangle){
                 if(rec != null){
+                    controller.setTimer();
                     CollidedOrNa(squareShape,rec);
                 }
             }
