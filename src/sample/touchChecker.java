@@ -62,12 +62,18 @@ public class touchChecker {
         Stage stage = (Stage) squareShape.getScene().getWindow();
 
         Label label = new Label("Final score: "+score);
-        label.setFont(new Font("Arial",40));
+        Label labelESC = new Label("\n\n\nPress 'ESC' to remove the score text.");
+        label.setFont(new Font("Arial",50));
         label.setTextFill(Color.RED);
+        labelESC.setFont(new Font("Arial", 20));
+        labelESC.setTextFill(Color.RED);
+
 
         Popup pop = new Popup();
         pop.getContent().add(label);
+        pop.getContent().add(labelESC);
         if(!pop.isShowing()){
+            pop.isHideOnEscape();
             pop.show(stage);
         }
     }

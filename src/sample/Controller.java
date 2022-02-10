@@ -31,7 +31,7 @@ public class Controller implements Initializable {
     @FXML
     private Rectangle squareShape;
     @FXML
-    private Button resetBtn;
+    private Button restartBtn;
     @FXML
     private Circle c1;
     @FXML
@@ -39,11 +39,13 @@ public class Controller implements Initializable {
     @FXML
     private AnchorPane scene;
     @FXML
-    private Text scoreArea;
-    @FXML
     private Rectangle redEnemy;
     @FXML
     private Text timerArea;
+    @FXML
+    private Text scoreArea;
+    @FXML
+    private Text scoreArea2;
 
     private double movementSpeed = 2;
     private double health = 100;
@@ -57,6 +59,7 @@ public class Controller implements Initializable {
     playerSquare PS = new playerSquare(this,health,movementSpeed,2,2);
     Spells spells = new Spells(this);
     private final long createdMillis = System.currentTimeMillis();
+    Main main = new Main();
 
     @FXML
     void start(ActionEvent event){
@@ -70,15 +73,8 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    void reset(ActionEvent event) {
-        double centerX = (maxX/2);
-        double centerY = (maxY/2);
-        squareShape.setLayoutY(centerY);
-        squareShape.setLayoutX(centerX);
-        c1.setLayoutY(centerY);
-        c1.setLayoutX(centerX);
-        c2.setLayoutY(centerY);
-        c2.setLayoutX(centerX);
+    void Restart(ActionEvent event) {
+        main.displayApplication();
     }
 
     public void setTimer() {

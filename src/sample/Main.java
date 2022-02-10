@@ -11,11 +11,14 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
+        Platform.setImplicitExit(false);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/sample.fxml"));
         Parent root = loader.load();
-
+        root.setId("background");
         Scene scene = new Scene(root,1310,894);
         scene.getStylesheets().add(getClass().getResource("/stylesheets.css").toExternalForm());
+
+
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("Dodger");
@@ -25,6 +28,17 @@ public class Main extends Application {
         primaryStage.setOnCloseRequest(e -> {
             Platform.exit();
             System.exit(0);
+        });
+    }
+
+
+    void displayApplication() {
+        Platform.runLater(() -> {
+            try{
+                start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
     }
 

@@ -7,12 +7,13 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="scene" prefHeight="894.0" prefWidth="1310.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-   <Circle fx:id="c2" fill="#1a90ff00" layoutX="655.0" layoutY="368.0" radius="75.0" stroke="#2600ff" strokeType="INSIDE" strokeWidth="11.0" style="-fx-stroke-dash-array: 50;" />
-   <Circle fx:id="c1" fill="#1a90ff00" layoutX="656.0" layoutY="368.0" radius="49.0" stroke="#19fff0" strokeType="INSIDE" strokeWidth="11.0" style="-fx-stroke-dash-array: 50;" />
-   <Rectangle fx:id="squareShape" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" layoutX="640.0" layoutY="355.0" stroke="BLACK" strokeType="INSIDE" width="31.0" />
-   <Button fx:id="resetBtn" layoutX="1182.0" layoutY="14.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
-   <Button fx:id="start" layoutX="1068.0" layoutY="14.0" mnemonicParsing="false" onAction="#start" text="Start" />
+   <Circle fx:id="c2" fill="#1a90ff00" layoutX="640.0" layoutY="380.0" radius="78.0" stroke="#9e2a10" strokeType="INSIDE" strokeWidth="11.0" style="-fx-stroke-dash-array: 50;" />
+   <Circle fx:id="c1" fill="#1a90ff00" layoutX="640.0" layoutY="380.0" radius="49.0" stroke="#c69a18" strokeType="INSIDE" strokeWidth="11.0" style="-fx-stroke-dash-array: 50;" />
+   <Rectangle fx:id="squareShape" arcHeight="5.0" arcWidth="5.0" fill="#fff91f" height="25.0" layoutX="625.0" layoutY="368.0" stroke="BLACK" strokeType="INSIDE" width="31.0" />
+   <Button fx:id="restartBtn" layoutX="1182.0" layoutY="14.0" mnemonicParsing="false" onAction="#Restart" text="Restart" textFill="#60b0f2" />
+   <Button fx:id="start" layoutX="1068.0" layoutY="14.0" mnemonicParsing="false" onAction="#start" text="Start" textFill="#60b0f2" />
    <Text fx:id="scoreArea" layoutX="196.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="122.0" />
-   <Text layoutX="155.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score:" wrappingWidth="114.13671875" />
-   <Text fx:id="timerArea" layoutX="569.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" wrappingWidth="84.13671875" />
+   <Text fx:id="scoreArea2" layoutX="113.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score:" wrappingWidth="114.13671875" />
+   <Text fx:id="timerArea" layoutX="394.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" wrappingWidth="84.13671875" />
+   <Text fx:id="timerArea2" layoutX="324.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" wrappingWidth="84.13671875" />
 </AnchorPane>

@@ -9,3 +9,6 @@ My highscore is 53075, beat it and get a hug from me
    
 Movement: W,A,S,D.
 Spells: L only (so far).
+
+Here is a picture of the game in its current state.
+![Screenshot](src/resources/AutoGame.png)
