@@ -11,4 +11,4 @@ Movement: W,A,S,D.
 Spells: L only (so far).
 
 Here is a picture of the game in its current state.
-![Screenshot](src/resources/AutoGame.png)
+![Screenshot](/resources/AutoGame.png)
