@@ -11,9 +11,11 @@ Movement: W,A,S,D.
 Spells: L only (so far).
 
 Here is a picture of the game in its current state.
+
 Description:
--The player is the yellow rectangle.
--The yellow and dark red circles around the player is the "spell". Be close enough to intersect the black rectangles to gain points.
--If you get hit by any black rectangles you lose.
+
+ - The player is the yellow rectangle.
+ - The yellow and dark red circles around the player is the "spell". Be close enough to intersect the black rectangles to gain points.
+ - If you get hit by any black rectangles you lose.
 
 ![Screenshot](/resources/AutoGame.png)
