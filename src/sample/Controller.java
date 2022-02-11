@@ -79,7 +79,7 @@ public class Controller implements Initializable {
 
     public void setTimer() {
         long nowMillis = System.currentTimeMillis();
-        timerArea.setText(String.valueOf((int) ((nowMillis - this.createdMillis) / 1000)));
+        timerArea.setText((int) ((nowMillis - this.createdMillis) / 1000) + "s");
 
     }
 
