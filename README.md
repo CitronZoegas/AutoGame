@@ -2,8 +2,6 @@
 
 My highscore is 53075, beat it and get a hug from me
 
-Here is a picture of the game in its current state.
-
 Description:
 
  - The player is the yellow rectangle.
